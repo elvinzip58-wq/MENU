@@ -141,6 +141,15 @@ img { display: block; }
 .stars button.on { filter: none; opacity: 1; transform: scale(1.08); }
 textarea.comment { min-height: 90px; resize: vertical; }
 
+
+/* Кнопка закрытия листа */
+
+.sheet-x { position: sticky; top: 0; float: right; z-index: 5; width: 36px; height: 36px; margin: 2px -4px 0 8px; border-radius: 50%; border: none;
+    background: rgba(127,127,127,.18); color: inherit; font-size: 20px; line-height: 36px; text-align: center; cursor: pointer; }
+.sheet-x:active { transform: scale(.92); }
+/* в меню гостя «×» поверх фото блюда, чтобы не сдвигать картинку */
+.sheet-x { position: absolute; top: 12px; right: 12px; float: none; margin: 0; background: rgba(0,0,0,.5); color: #fff; backdrop-filter: blur(6px); }
+
 .toast { position: fixed; left: 50%; top: calc(16px + env(safe-area-inset-top)); transform: translate(-50%, -150%); z-index: 200; background: var(--text); color: var(--bg);
     padding: 13px 18px; border-radius: 14px; font-size: 14px; font-weight: 700; transition: transform .3s; width: max-content; max-width: min(92vw, 420px); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
 .toast.show { transform: translate(-50%, 0); }
@@ -765,6 +774,16 @@ async function init() {
     history.replaceState({ screen: 'home' }, '');
     if (params.get('open') === 'menu') openMenu();
 }
+
+
+// Кнопка «×» в правом верхнем углу каждого всплывающего окна
+document.querySelectorAll('.sheet').forEach(sh => {
+    if (sh.querySelector('.sheet-x')) return;
+    const x = document.createElement('button');
+    x.className = 'sheet-x'; x.type = 'button'; x.setAttribute('aria-label', 'Закрыть'); x.textContent = '×';
+    x.onclick = e => { e.stopPropagation(); closeSheets(); };
+    sh.insertBefore(x, sh.firstChild);
+});
 
 // Предпросмотр из админки: настройки приходят сообщением, страница перерисовывается сразу
 window.addEventListener('message', e => {
