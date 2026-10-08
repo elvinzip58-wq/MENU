@@ -640,7 +640,14 @@ function checkGps() {
     });
 }
 function newCallId() { const a = new Uint8Array(12); crypto.getRandomValues(a); return Array.from(a, b => ('0' + b.toString(16)).slice(-2)).join(''); }
+// Номер этого телефона (случайный, хранится в браузере): гости в Wi-Fi ресторана приходят на сервер с одного адреса,
+// по номеру сервер ограничивает частоту заказов каждому телефону отдельно, а не всему залу сразу
+function guestDevice() {
+    try { let d = localStorage.getItem('qr_dev'); if (!/^[a-z0-9]{16,40}$/.test(d || '')) { d = newCallId(); localStorage.setItem('qr_dev', d); } return d; }
+    catch (e) { return guestDevice.mem || (guestDevice.mem = newCallId()); }
+}
 async function postCall(body) {
+    body = Object.assign({ device: guestDevice() }, body);
     const r = await fetch(API + '/api/call-waiter', { method: 'POST', headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': '1' }, body: JSON.stringify(body) });
     let data = {}; try { data = await r.json(); } catch (e) {}
     if (!r.ok) {
