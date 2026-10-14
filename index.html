@@ -158,6 +158,101 @@ textarea.comment { min-height: 90px; resize: vertical; }
 .skel { background: linear-gradient(90deg, var(--surface) 25%, color-mix(in srgb, var(--surface) 60%, var(--bg)) 50%, var(--surface) 75%); background-size: 200% 100%; animation: sk 1.2s infinite; border-radius: var(--radius); height: 110px; margin: 10px 14px; }
 @keyframes sk { to { background-position: -200% 0; } }
 .fly { position: fixed; z-index: 300; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); pointer-events: none; transition: all .55s cubic-bezier(.5,-.3,.7,1); }
+
+/* ===== Улучшенное оформление для новых шаблонов (без изменения логики) ===== */
+html[data-tpl="sufra-brand"] .cover,
+html[data-tpl="emerald-lounge"] .cover,
+html[data-tpl="wine-steak"] .cover,
+html[data-tpl="caspian-breeze"] .cover,
+html[data-tpl="street-drive"] .cover {
+    height: 205px;
+}
+html[data-tpl="sufra-brand"] .cover {
+    background-image: radial-gradient(circle at 20% 25%, rgba(224,162,59,.34), transparent 52%),
+                      radial-gradient(circle at 82% 30%, rgba(179,38,46,.38), transparent 58%),
+                      linear-gradient(135deg, #1c2541 0%, #2a1f2d 60%, #1c2541 100%);
+}
+html[data-tpl="emerald-lounge"] .cover {
+    background-image: radial-gradient(circle at 50% 20%, rgba(229,184,105,.28), transparent 58%),
+                      radial-gradient(circle at 15% 65%, rgba(16,185,129,.18), transparent 55%),
+                      linear-gradient(135deg, #07120f 0%, #16382e 55%, #0b1915 100%);
+}
+html[data-tpl="wine-steak"] .cover {
+    background-image: radial-gradient(circle at 75% 25%, rgba(217,107,67,.34), transparent 55%),
+                      radial-gradient(circle at 20% 60%, rgba(153,27,27,.30), transparent 55%),
+                      linear-gradient(135deg, #11080a 0%, #33151b 55%, #160d0f 100%);
+}
+html[data-tpl="caspian-breeze"] .cover {
+    background-image: radial-gradient(circle at 80% 20%, rgba(255,255,255,.32), transparent 50%),
+                      radial-gradient(circle at 20% 70%, rgba(56,189,248,.35), transparent 55%),
+                      linear-gradient(135deg, #0c4a6e 0%, #0284c7 55%, #38bdf8 100%);
+}
+html[data-tpl="street-drive"] .cover {
+    background-image: radial-gradient(circle at 22% 28%, rgba(255,59,92,.40), transparent 52%),
+                      radial-gradient(circle at 82% 65%, rgba(250,204,21,.22), transparent 52%),
+                      linear-gradient(135deg, #0b0d11 0%, #1f2430 60%, #111318 100%);
+}
+html[data-tpl="sufra-brand"] .logo {
+    box-shadow: 0 0 0 2px #e0a23b, 0 10px 26px rgba(28,37,65,.18);
+}
+html[data-tpl="emerald-lounge"] .logo,
+html[data-tpl="wine-steak"] .logo,
+html[data-tpl="street-drive"] .logo {
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent), 0 12px 28px rgba(0,0,0,.45);
+}
+html[data-tpl="caspian-breeze"] .logo {
+    box-shadow: 0 10px 26px rgba(2,132,199,.18);
+}
+html[data-tpl="sufra-brand"] .card,
+html[data-tpl="sufra-brand"] .act {
+    box-shadow: 0 6px 20px rgba(28,37,65,.06);
+}
+html[data-tpl="caspian-breeze"] .card,
+html[data-tpl="caspian-breeze"] .act {
+    box-shadow: 0 8px 24px rgba(15,41,66,.06);
+}
+html[data-tpl="emerald-lounge"] .card,
+html[data-tpl="wine-steak"] .card,
+html[data-tpl="street-drive"] .card {
+    box-shadow: 0 8px 24px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.04);
+}
+html[data-tpl="sufra-brand"] .big-btn,
+html[data-tpl="emerald-lounge"] .big-btn,
+html[data-tpl="wine-steak"] .big-btn,
+html[data-tpl="caspian-breeze"] .big-btn,
+html[data-tpl="street-drive"] .big-btn,
+html[data-tpl="sufra-brand"] .cartbar,
+html[data-tpl="emerald-lounge"] .cartbar,
+html[data-tpl="wine-steak"] .cartbar,
+html[data-tpl="caspian-breeze"] .cartbar,
+html[data-tpl="street-drive"] .cartbar,
+html[data-tpl="sufra-brand"] .cat.on,
+html[data-tpl="emerald-lounge"] .cat.on,
+html[data-tpl="wine-steak"] .cat.on,
+html[data-tpl="caspian-breeze"] .cat.on,
+html[data-tpl="street-drive"] .cat.on {
+    background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 80%, #000));
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+html[data-tpl="sufra-brand"] .badge {
+    background: #e0a23b;
+    color: #1c2541;
+}
+html[data-tpl="sufra-brand"] .section h3,
+html[data-tpl="street-drive"] .section h3 {
+    border-left: 4px solid var(--accent);
+    padding-left: 10px;
+}
+html[data-tpl="street-drive"] .section h3 {
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+html[data-tpl="emerald-lounge"] .section h3,
+html[data-tpl="wine-steak"] .section h3 {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    letter-spacing: .3px;
+}
 </style>
 </head>
 <body>
@@ -263,11 +358,16 @@ textarea.comment { min-height: 90px; resize: vertical; }
 //  ШАБЛОНЫ ОФОРМЛЕНИЯ
 // =====================================================================
 const TEMPLATES = {
-    'dark-pub':     { bg: '#141414', surface: '#1f1f1f', text: '#ffffff', muted: '#a3a3a3', accent: '#e0a96d', accentText: '#141414', border: 'rgba(255,255,255,.08)', font: 'system', layout: 'list', radius: 16 },
-    'light-classic':{ bg: '#faf7f2', surface: '#ffffff', text: '#1c1917', muted: '#78716c', accent: '#b45309', accentText: '#ffffff', border: 'rgba(28,25,23,.08)', font: 'serif', layout: 'grid', radius: 14 },
-    'minimal':      { bg: '#ffffff', surface: '#f5f5f5', text: '#111111', muted: '#737373', accent: '#111111', accentText: '#ffffff', border: 'rgba(0,0,0,.06)', font: 'system', layout: 'list', radius: 10 },
-    'bright-cafe':  { bg: '#fff7ed', surface: '#ffffff', text: '#1f2937', muted: '#6b7280', accent: '#f97316', accentText: '#ffffff', border: 'rgba(249,115,22,.15)', font: 'rounded', layout: 'grid', radius: 22 },
-    'premium':      { bg: '#0c0a09', surface: '#1c1917', text: '#f5f5f4', muted: '#a8a29e', accent: '#d4af37', accentText: '#0c0a09', border: 'rgba(212,175,55,.18)', font: 'elegant', layout: 'photo', radius: 4 }
+    'dark-pub':       { bg: '#141414', surface: '#1f1f1f', text: '#ffffff', muted: '#a3a3a3', accent: '#e0a96d', accentText: '#141414', border: 'rgba(255,255,255,.08)', font: 'system', layout: 'list', radius: 16 },
+    'light-classic':  { bg: '#faf7f2', surface: '#ffffff', text: '#1c1917', muted: '#78716c', accent: '#b45309', accentText: '#ffffff', border: 'rgba(28,25,23,.08)', font: 'serif', layout: 'grid', radius: 14 },
+    'minimal':        { bg: '#ffffff', surface: '#f5f5f5', text: '#111111', muted: '#737373', accent: '#111111', accentText: '#ffffff', border: 'rgba(0,0,0,.06)', font: 'system', layout: 'list', radius: 10 },
+    'bright-cafe':    { bg: '#fff7ed', surface: '#ffffff', text: '#1f2937', muted: '#6b7280', accent: '#f97316', accentText: '#ffffff', border: 'rgba(249,115,22,.15)', font: 'rounded', layout: 'grid', radius: 22 },
+    'premium':        { bg: '#0c0a09', surface: '#1c1917', text: '#f5f5f4', muted: '#a8a29e', accent: '#d4af37', accentText: '#0c0a09', border: 'rgba(212,175,55,.18)', font: 'elegant', layout: 'photo', radius: 4 },
+    'sufra-brand':    { bg: '#fbf7f4', surface: '#ffffff', text: '#1c2541', muted: '#646e82', accent: '#b3262e', accentText: '#ffffff', border: 'rgba(28,37,65,.10)', font: 'serif', layout: 'grid', radius: 18 },
+    'emerald-lounge': { bg: '#0b1915', surface: '#132a23', text: '#f2f7f5', muted: '#8faea3', accent: '#e5b869', accentText: '#0b1915', border: 'rgba(229,184,105,.18)', font: 'elegant', layout: 'photo', radius: 18 },
+    'wine-steak':     { bg: '#160d0f', surface: '#231518', text: '#faf5f5', muted: '#b59b9f', accent: '#d96b43', accentText: '#ffffff', border: 'rgba(217,107,67,.20)', font: 'serif', layout: 'photo', radius: 14 },
+    'caspian-breeze': { bg: '#f2f7fb', surface: '#ffffff', text: '#0f2942', muted: '#5c768d', accent: '#0284c7', accentText: '#ffffff', border: 'rgba(2,132,199,.12)', font: 'rounded', layout: 'grid', radius: 20 },
+    'street-drive':   { bg: '#111318', surface: '#1b1f27', text: '#ffffff', muted: '#9ca3af', accent: '#ff3b5c', accentText: '#ffffff', border: 'rgba(255,255,255,.09)', font: 'condensed', layout: 'grid', radius: 18 }
 };
 const FONTS = {
     system:    { body: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif', head: null, gf: null },
@@ -356,6 +456,7 @@ function toast(m, ms) { const el = $('toast'); el.textContent = m; el.classList.
 // =====================================================================
 function applyTheme() {
     const base = TEMPLATES[S.template] || TEMPLATES['dark-pub'];
+    document.documentElement.dataset.tpl = (S && TEMPLATES[S.template]) ? S.template : 'dark-pub';
     const th = Object.assign({}, base, S.theme || {});
     const r = document.documentElement.style;
     r.setProperty('--bg', th.bg); r.setProperty('--surface', th.surface); r.setProperty('--text', th.text); r.setProperty('--muted', th.muted);
