@@ -441,6 +441,10 @@ let MENU = [];              // меню из 1С
 let security = {};
 let lang = 'ru';
 let cart = {};              // { id: { qty, comment } }
+// Ссылка без стола (Instagram, сайт) — только просмотр: запомненный стол с прошлого QR не подставляем (20.10).
+// Запомненный стол берём лишь при обновлении страницы или «Назад».
+const NAV_TYPE = (() => { try { return (performance.getEntriesByType('navigation')[0] || {}).type || 'navigate'; } catch (e) { return 'navigate'; } })();
+if (!params.get('table') && NAV_TYPE === 'navigate') { sessionStorage.removeItem('qr_table'); sessionStorage.removeItem('qr_hall'); }
 let tableId = params.get('table') || sessionStorage.getItem('qr_table') || '';
 let hall = params.get('hall') || sessionStorage.getItem('qr_hall') || '';
 let cooldown = false;
